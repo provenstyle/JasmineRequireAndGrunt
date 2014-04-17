@@ -2,12 +2,30 @@ module.exports = function(grunt){
 
 	grunt.initConfig({
 		jasmine: {
-			src: ['src/Player.js', 'src/Song.js'],   //when using requirejs you don't include the source files
-			options: {
-				specs: 'spec/*Spec.js',
-				helpers: 'spec/*Helper.js',
-				vendor: ['vendor/*.js'],
-				keepRunner: true
+			require:{
+				src: ['src/modules/**/*.js'],   //when using requirejs you don't include the source files
+				options: {
+					specs: 'spec/modules/**/*Spec.js',
+					helpers: 'spec/modules/**/*Helper.js',
+					vendor: ['vendor/*.js'],
+					outfile: '_SpecRunnerRequire.html',
+					keepRunner: true,
+					template: require('grunt-template-jasmine-requirejs'),
+						templateOptions:{
+							requireConfig:{
+								baseUrl: 'src/modules/'
+							}
+						}
+				}	
+			}, 
+			pojo: {
+				src: 'src/scripts/**/*.js', 
+				options: {
+					specs: 'spec/scripts/**/*Spec.js',
+					helpers: 'spec/scripts/**/*Helper.js',
+					outfile: '_SpecRunnerScripts.html',
+					keepRunner: true
+				}
 			}
 		},
 		watch:{
