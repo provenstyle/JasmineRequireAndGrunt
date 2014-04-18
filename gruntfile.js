@@ -2,24 +2,13 @@ module.exports = function(grunt){
 
 	grunt.initConfig({
 		jasmine: {
-			require:{
-				src: ['src/scripts/**/*.js'],   //when using requirejs you don't include the source files
-				options: {
-					specs: 'spec/**/*Spec.js',
-					helpers: 'spec/helpers/*Helper.js',
-					vendor: ['vendor/*.js'],
-					keepRunner: true
-				}	
-			}, 
-			pojo: {
-				src: 'src/scripts/**/*.js', 
-				options: {
-					specs: 'spec/scripts/**/*Spec.js',
-					helpers: 'spec/scripts/**/*Helper.js',
-					outfile: '_SpecRunnerScripts.html',
-					keepRunner: true
-				}
-			}
+			src: ['src/scripts/**/*.js'],   //don't include the requirejs modules
+			options: {
+				specs: 'spec/**/*Spec.js',
+				helpers: 'spec/helpers/*Helper.js',
+				vendor: ['vendor/*.js'],
+				keepRunner: true
+			}	
 		},
 		watch:{
 			jasmine:{
@@ -46,7 +35,7 @@ module.exports = function(grunt){
 		},
 		notify_hooks:{
 			options:{
-				enabled: true,
+				enabled: false,
 				title: "Grunt Notification"
 			}
 		}
