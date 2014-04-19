@@ -6,7 +6,7 @@ module.exports = function(grunt){
 			options: {
 				specs: 'spec/**/*Spec.js',
 				helpers: 'spec/helpers/*Helper.js',
-				vendor: ['vendor/*.js'],
+				vendor: ['vendor/require.js'],
 				keepRunner: true
 			}	
 		},

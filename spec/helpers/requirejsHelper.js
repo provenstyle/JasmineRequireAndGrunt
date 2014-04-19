@@ -1,3 +1,6 @@
 requirejs.config({
-	baseUrl: 'src/modules/'
+	baseUrl: 'src/modules/', 
+	paths:{
+		'Squire': '../../spec/squire'
+	}
 });
