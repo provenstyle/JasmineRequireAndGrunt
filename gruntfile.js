@@ -5,15 +5,15 @@ module.exports = function(grunt){
 			src: ['src/scripts/**/*.js'],   //don't include the requirejs modules
 			options: {
 				specs: 'spec/**/*Spec.js',
-				helpers: 'spec/helpers/*Helper.js',
+				helpers: ['spec/helpers/*Helper.js', 'http://localhost:35729/livereload.js?snipver=1'],
 				vendor: ['vendor/require.js'],
 				keepRunner: true
 			}	
 		},
 		watch:{
-			jasmine:{
-				files:['src/**', 'spec/**'],
-				tasks:['jasmine'],
+			javascript:{
+				files:['src/**', 'spec/**', 'gruntfile.js'],
+				tasks:['jshint', 'jasmine'],
 				options:{
 					livereload: 37000
 				}
@@ -24,7 +24,13 @@ module.exports = function(grunt){
 					livereload: 36000
 				}
 			}
-		}, 
+		},
+		jshint:{
+			files:['./src/**/*.js', './spec/**/*.js'],
+			options: {
+
+			}
+		},
 		notify:{
 			test:{
 				options:{
@@ -42,12 +48,13 @@ module.exports = function(grunt){
 	});
 
 	grunt.registerTask('default', ['jasmine']);
-	grunt.registerTask('watch', ['watch:jasmine', 'watch:html']);
+	grunt.registerTask('watch', ['watch:javascript', 'watch:html']);
 
 	grunt.loadNpmTasks('grunt-contrib-jasmine');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-notify');
 	grunt.loadNpmTasks('grunt-open');
+	grunt.loadNpmTasks('grunt-contrib-jshint');
 
 	grunt.task.run('notify_hooks');
 };

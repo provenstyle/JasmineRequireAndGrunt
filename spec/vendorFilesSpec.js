@@ -21,5 +21,5 @@ describe('Vendor libraries needed for testing', function(){
 				cb();
 			});
 		});
-	})
+	});
 });
