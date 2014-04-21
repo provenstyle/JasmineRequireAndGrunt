@@ -1,5 +1,7 @@
 define(['messageService'], function(messageService){
 	return {
-		message: messageService.getMessage()
+		message: function(){
+			return messageService.getMessage()
+		}
 	}
 });
